@@ -8,11 +8,11 @@ type PostListProps = {
 
 export function PostList({ posts, emptyText = "No posts yet." }: PostListProps) {
   if (posts.length === 0) {
-    return <p className="text-slate-700 dark:text-slate-300">{emptyText}</p>;
+    return <p className="rounded-xl border border-dashed border-slate-300 px-4 py-6 text-slate-600 dark:border-slate-700 dark:text-slate-300">{emptyText}</p>;
   }
 
   return (
-    <ul className="space-y-4">
+    <ul className="space-y-4 sm:space-y-5">
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}

@@ -4,20 +4,82 @@
 
 :root {
   color-scheme: light;
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #d8dee9;
+  --accent: #0369a1;
+  --accent-soft: #dbeafe;
+  --shadow: 0 12px 30px -18px rgba(15, 23, 42, 0.35);
 }
 
 .dark {
   color-scheme: dark;
+  --bg: #020617;
+  --panel: #0b1220;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.18);
+  --shadow: 0 18px 42px -20px rgba(2, 6, 23, 0.9);
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  @apply antialiased;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 8% -5%, rgba(2, 132, 199, 0.16), transparent 42%),
+    radial-gradient(circle at 95% 0%, rgba(14, 116, 144, 0.14), transparent 38%);
+}
+
+main {
+  @apply pb-16;
 }
 
 a {
-  @apply text-sky-700 underline-offset-4 hover:underline dark:text-sky-400;
+  color: var(--accent);
+  @apply underline-offset-4 transition hover:underline;
 }
 
 ::selection {
   @apply bg-sky-200 text-slate-900 dark:bg-sky-700 dark:text-slate-100;
+}
+
+@layer components {
+  .page-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    @apply rounded-2xl p-5 sm:p-7;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight sm:text-4xl;
+    color: var(--text);
+  }
+
+  .section-subtitle {
+    color: var(--muted);
+    @apply max-w-2xl text-base leading-8;
+  }
+
+  .brand-button {
+    border: 1px solid var(--border);
+    color: var(--text);
+    @apply inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium no-underline transition;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(148, 163, 184, 0.08));
+  }
+
+  .brand-button:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+
+  .kicker {
+    color: var(--accent);
+    @apply text-xs font-semibold uppercase tracking-[0.18em];
+  }
 }

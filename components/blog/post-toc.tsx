@@ -37,7 +37,7 @@ export function PostToc({ entries }: PostTocProps) {
         </div>
       </details>
 
-      <aside className="sticky top-24 hidden rounded-xl border border-slate-200 bg-slate-50 p-4 lg:block dark:border-slate-800 dark:bg-slate-900">
+      <aside className="sticky top-24 hidden rounded-2xl border border-slate-200/90 bg-white/90 p-4 shadow-sm lg:block dark:border-slate-800 dark:bg-slate-900/90">
         <h2 className="mb-3 text-sm font-semibold text-slate-800 dark:text-slate-200">On this page</h2>
         <TocList entries={entries} />
       </aside>

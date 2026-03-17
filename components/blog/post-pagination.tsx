@@ -15,7 +15,7 @@ type PostNavCardProps = {
 function PostNavCard({ label, post, align }: PostNavCardProps) {
   return (
     <Link
-      className="rounded-xl border border-slate-200 bg-white p-4 no-underline transition hover:border-sky-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-sky-600"
+      className="rounded-2xl border border-slate-200/90 bg-white/95 p-4 no-underline shadow-sm transition hover:border-sky-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-950/95 dark:hover:border-sky-600"
       href={`/blog/${post.slug}`}
     >
       <p className={`text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400 ${align === "right" ? "text-right" : ""}`}>{label}</p>

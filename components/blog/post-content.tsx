@@ -67,7 +67,7 @@ export function PostContent({ content }: PostContentProps) {
   const blocks = parseArticleBlocks(content);
 
   return (
-    <section className="space-y-6 text-[15px] leading-8 text-slate-800 sm:text-base dark:text-slate-200">
+    <section className="space-y-6 text-[15px] leading-8 text-slate-800 sm:text-[1.03rem] dark:text-slate-200">
       {blocks.map((block, index) => {
         if (block.type === "heading") {
           if (block.level === 1) {
@@ -80,7 +80,7 @@ export function PostContent({ content }: PostContentProps) {
 
           if (block.level === 2) {
             return (
-              <h2 id={block.id} key={`${block.id}-${index}`} className="scroll-mt-24 pt-2 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+              <h2 id={block.id} key={`${block.id}-${index}`} className="scroll-mt-24 border-t border-slate-200 pt-4 text-2xl font-semibold tracking-tight text-slate-900 dark:border-slate-800 dark:text-slate-100">
                 {block.text}
               </h2>
             );
@@ -127,7 +127,7 @@ export function PostContent({ content }: PostContentProps) {
 
         if (block.type === "blockquote") {
           return (
-            <blockquote key={`quote-${index}`} className="rounded-r-md border-l-4 border-sky-500/70 bg-sky-50/50 px-4 py-3 text-slate-700 dark:border-sky-400 dark:bg-slate-900 dark:text-slate-200">
+            <blockquote key={`quote-${index}`} className="rounded-xl border border-sky-200 bg-sky-50/80 px-4 py-3 text-slate-700 dark:border-sky-900 dark:bg-slate-900 dark:text-slate-200">
               {block.lines.map((line, lineIndex) => (
                 <p key={`quote-line-${index}-${lineIndex}`} className="leading-8">
                   {renderInlineText(line)}
@@ -140,7 +140,7 @@ export function PostContent({ content }: PostContentProps) {
         return (
           <pre
             key={`code-${index}`}
-            className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-900 p-4 text-sm leading-7 text-slate-100 dark:border-slate-700 dark:bg-slate-950"
+            className="overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-4 text-sm leading-7 text-slate-100 dark:border-slate-700 dark:bg-slate-950"
           >
             <code>{block.code}</code>
           </pre>

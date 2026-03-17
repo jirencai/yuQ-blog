@@ -40,7 +40,7 @@ export function ThemeToggle() {
   return (
     <button
       aria-label="Toggle theme"
-      className="rounded-md border border-slate-300 px-2 py-1 text-xs text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900 sm:text-sm"
+      className="rounded-full border border-slate-300 bg-white/85 px-3 py-1 text-xs font-medium text-slate-700 transition hover:border-sky-500 hover:bg-sky-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-sky-500 dark:hover:bg-slate-800 sm:text-sm"
       onClick={toggleTheme}
       type="button"
     >

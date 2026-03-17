@@ -67,8 +67,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { newer, older } = getAdjacentPostsMeta(post.meta.slug);
 
   return (
-    <article className="space-y-8">
-      <header className="space-y-4 border-b border-slate-200 pb-6 dark:border-slate-800">
+    <article className="space-y-7 sm:space-y-8">
+      <header className="page-panel space-y-4">
+        <p className="kicker">Article</p>
         <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
           <p>{formatPostDate(post.meta.date)}</p>
           <span aria-hidden>|</span>
@@ -88,7 +89,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </header>
 
       <div className="space-y-6 lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-8 lg:space-y-0">
-        <div className="min-w-0">
+        <div className="page-panel min-w-0">
           <PostContent content={post.content} />
         </div>
         <PostToc entries={tocEntries} />
@@ -96,8 +97,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
       <PostPagination newer={newer} older={older} />
 
-      <footer>
-        <Link href="/blog">Back to blog list</Link>
+      <footer className="pt-1">
+        <Link className="brand-button text-sm" href="/blog">
+          Back to blog list
+        </Link>
       </footer>
     </article>
   );
