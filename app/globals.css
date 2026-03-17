@@ -17,3 +17,7 @@ body {
 a {
   @apply text-sky-700 underline-offset-4 hover:underline dark:text-sky-400;
 }
+
+::selection {
+  @apply bg-sky-200 text-slate-900 dark:bg-sky-700 dark:text-slate-100;
+}

@@ -2,6 +2,10 @@
 title: Building a Content-First Blog
 date: 2026-03-20
 summary: Why separating content, pages, and data access makes iteration safer.
+tags:
+  - content
+  - maintainability
+  - workflow
 ---
 
 # Building a Content-First Blog
@@ -15,3 +19,16 @@ When a blog starts simple, the architecture should stay simple.
 - The lib layer owns loading and transformation.
 
 This keeps future migrations practical without paying complexity early.
+
+You can read the [Next.js docs](https://nextjs.org/docs) to keep **delivery quality** while preserving *implementation simplicity*.
+
+## Minimal content query flow
+
+```ts
+const posts = getAllPostsMeta();
+const post = getPostBySlug(slug);
+```
+
+1. Keep content in `content/posts`.
+2. Keep parsing in `lib/posts`.
+3. Keep pages focused on rendering.

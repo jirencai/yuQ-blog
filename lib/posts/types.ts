@@ -3,6 +3,7 @@ export type PostMeta = {
   title: string;
   date: string;
   summary?: string;
+  tags: string[];
 };
 
 export type Post = {
