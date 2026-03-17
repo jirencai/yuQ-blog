@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
+import { buildRootMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "yuQ Blog",
-  description: "A personal blog focused on clear writing and simple delivery."
-};
+export const metadata: Metadata = buildRootMetadata();
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -3,6 +3,7 @@ node_modules/
 out/
 .npm-cache/
 .env*
+!.env.example
 *.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*

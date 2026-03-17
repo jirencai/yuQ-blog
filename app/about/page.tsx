@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "About",
+  description: "Learn about yuQ Blog and the content-first approach behind this project.",
+  path: "/about"
+});
+
 export default function AboutPage() {
   return (
     <section className="space-y-4">

@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { PostList } from "@/components/blog/post-list";
 import { getAllPostsMeta } from "@/lib/posts/repository";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Blog",
+  description: "Browse all published posts in yuQ Blog, including architecture notes and delivery updates.",
+  path: "/blog"
+});
 
 export default function BlogIndexPage() {
   const posts = getAllPostsMeta();

@@ -1,10 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostContent } from "@/components/blog/post-content";
 import { PostPagination } from "@/components/blog/post-pagination";
 import { PostToc } from "@/components/blog/post-toc";
 import { estimateReadingTimeMinutes, extractTocEntries } from "@/lib/posts/markdown";
 import { getAdjacentPostsMeta, getAllPostSlugs, getPostBySlug } from "@/lib/posts/repository";
+import { buildArticleMetadata } from "@/lib/seo/metadata";
 
 type BlogDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -12,6 +14,29 @@ type BlogDetailPageProps = {
 
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      robots: {
+        index: false,
+        follow: false
+      }
+    };
+  }
+
+  return buildArticleMetadata({
+    title: post.meta.title,
+    description: post.meta.summary,
+    path: `/blog/${post.meta.slug}`,
+    publishedTime: post.meta.date,
+    tags: post.meta.tags
+  });
 }
 
 function formatPostDate(date: string): string {

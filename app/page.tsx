@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { PostList } from "@/components/blog/post-list";
 import { getRecentPostsMeta } from "@/lib/posts/repository";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  description: "Read the latest notes, ideas, and practical writing updates from yuQ Blog.",
+  path: "/"
+});
 
 export default function HomePage() {
   const recentPosts = getRecentPostsMeta(3);
