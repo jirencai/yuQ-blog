@@ -12,7 +12,7 @@ export function PostList({ posts, emptyText = "No posts yet." }: PostListProps) 
   }
 
   return (
-    <ul className="space-y-4 sm:space-y-5">
+    <ul className="grid gap-4 sm:gap-5 lg:grid-cols-2">
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { parseArticleBlocks } from "@/lib/posts/markdown";
 
@@ -134,6 +135,23 @@ export function PostContent({ content }: PostContentProps) {
                 </p>
               ))}
             </blockquote>
+          );
+        }
+
+        if (block.type === "image") {
+          return (
+            <figure key={`image-${index}`} className="space-y-3">
+              <Image
+                alt={block.alt || "Article image"}
+                className="w-full rounded-2xl border border-slate-200 bg-white object-cover shadow-sm dark:border-slate-700 dark:bg-slate-900"
+                height={720}
+                loading="lazy"
+                src={block.src}
+                unoptimized
+                width={1280}
+              />
+              {block.title ? <figcaption className="text-sm leading-7 text-slate-500 dark:text-slate-400">{block.title}</figcaption> : null}
+            </figure>
           );
         }
 

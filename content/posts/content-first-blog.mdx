@@ -6,6 +6,8 @@ tags:
   - content
   - maintainability
   - workflow
+coverImage: /images/cover-content-architecture.svg
+coverAlt: Diagram-like cards representing content, app pages, and utilities
 ---
 
 # Building a Content-First Blog
@@ -17,6 +19,8 @@ When a blog starts simple, the architecture should stay simple.
 - Content stays in dedicated files.
 - Pages focus on rendering.
 - The lib layer owns loading and transformation.
+
+![Architecture sketch](/images/cover-content-architecture.svg "One data source, multiple pages, minimal coupling")
 
 This keeps future migrations practical without paying complexity early.
 

@@ -80,13 +80,24 @@ function normalizeTags(value: unknown): string[] {
   return [];
 }
 
+function normalizeOptionalString(value: unknown): string | undefined {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
 function toPostMetaFromData(slug: string, data: Record<string, unknown>): PostMeta {
   return {
     slug,
     title: typeof data.title === "string" ? data.title : slug,
     date: normalizeDate(data.date),
     summary: typeof data.summary === "string" ? data.summary : undefined,
-    tags: normalizeTags(data.tags)
+    tags: normalizeTags(data.tags),
+    coverImage: normalizeOptionalString(data.coverImage),
+    coverAlt: normalizeOptionalString(data.coverAlt)
   };
 }
 

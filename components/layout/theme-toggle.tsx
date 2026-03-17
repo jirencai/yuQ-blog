@@ -44,7 +44,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       type="button"
     >
-      Theme
+      {theme === "dark" ? "Dark" : "Light"}
     </button>
   );
 }

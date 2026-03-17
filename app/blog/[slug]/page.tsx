@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostContent } from "@/components/blog/post-content";
@@ -85,6 +86,17 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               </li>
             ))}
           </ul>
+        ) : null}
+        {post.meta.coverImage ? (
+          <Image
+            alt={post.meta.coverAlt ?? `${post.meta.title} cover`}
+            className="h-auto w-full rounded-2xl border border-slate-200/80 object-cover shadow-sm dark:border-slate-700/80"
+            height={720}
+            loading="lazy"
+            src={post.meta.coverImage}
+            unoptimized
+            width={1280}
+          />
         ) : null}
       </header>
 

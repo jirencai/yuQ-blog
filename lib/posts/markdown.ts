@@ -4,6 +4,7 @@ export type ArticleBlock =
   | { type: "unordered-list"; items: string[] }
   | { type: "ordered-list"; items: string[] }
   | { type: "blockquote"; lines: string[] }
+  | { type: "image"; src: string; alt: string; title?: string }
   | { type: "code"; language: string; code: string };
 
 export type TocEntry = {
@@ -36,10 +37,36 @@ function stripListPrefix(line: string): string {
 function extractWords(text: string): string[] {
   return text
     .replace(/```[\s\S]*?```/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
     .replace(/`[^`]*`/g, " ")
     .replace(/[#>*_\-\[\]\(\)]/g, " ")
     .split(/\s+/)
     .filter(Boolean);
+}
+
+function parseImageLine(line: string): { src: string; alt: string; title?: string } | null {
+  const match = line.match(/^!\[([^\]]*)\]\((.+?)\)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const alt = match[1].trim();
+  const payload = match[2].trim();
+  const titleMatch = payload.match(/^(\S+)\s+"([^"]+)"$/);
+
+  if (titleMatch) {
+    return {
+      src: titleMatch[1].trim(),
+      alt,
+      title: titleMatch[2].trim()
+    };
+  }
+
+  return {
+    src: payload,
+    alt
+  };
 }
 
 export function parseArticleBlocks(content: string): ArticleBlock[] {
@@ -76,6 +103,18 @@ export function parseArticleBlocks(content: string): ArticleBlock[] {
         language: language || "text",
         code: codeLines.join("\n").trimEnd()
       });
+      continue;
+    }
+
+    const image = parseImageLine(line);
+    if (image) {
+      blocks.push({
+        type: "image",
+        src: image.src,
+        alt: image.alt,
+        title: image.title
+      });
+      index += 1;
       continue;
     }
 
@@ -149,6 +188,7 @@ export function parseArticleBlocks(content: string): ArticleBlock[] {
       if (
         !paragraphLine ||
         paragraphLine.startsWith("```") ||
+        parseImageLine(paragraphLine) !== null ||
         paragraphLine.startsWith(">") ||
         isUnorderedListLine(paragraphLine) ||
         isOrderedListLine(paragraphLine) ||

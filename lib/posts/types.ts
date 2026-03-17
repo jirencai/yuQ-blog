@@ -4,6 +4,8 @@ export type PostMeta = {
   date: string;
   summary?: string;
   tags: string[];
+  coverImage?: string;
+  coverAlt?: string;
 };
 
 export type Post = {
