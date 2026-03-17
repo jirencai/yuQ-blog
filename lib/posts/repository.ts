@@ -48,7 +48,21 @@ function toPostMeta(fileName: string): PostMeta {
 export function getAllPostsMeta(): PostMeta[] {
   const posts = getPostFilePaths().map(toPostMeta);
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => {
+    if (a.date === b.date) {
+      return a.slug.localeCompare(b.slug);
+    }
+
+    return a.date < b.date ? 1 : -1;
+  });
+}
+
+export function getRecentPostsMeta(limit = 3): PostMeta[] {
+  return getAllPostsMeta().slice(0, limit);
+}
+
+export function getAllPostSlugs(): string[] {
+  return getAllPostsMeta().map((post) => post.slug);
 }
 
 export function getPostBySlug(slug: string): Post | null {

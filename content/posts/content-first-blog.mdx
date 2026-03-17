@@ -1,0 +1,17 @@
+---
+title: Building a Content-First Blog
+date: 2026-03-20
+summary: Why separating content, pages, and data access makes iteration safer.
+---
+
+# Building a Content-First Blog
+
+When a blog starts simple, the architecture should stay simple.
+
+## Why this structure works
+
+- Content stays in dedicated files.
+- Pages focus on rendering.
+- The lib layer owns loading and transformation.
+
+This keeps future migrations practical without paying complexity early.
